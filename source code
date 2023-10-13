@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class Numberguessing {
+    public static void main(String[] args) {
+        System.out.println(" Let's play number guessing. I'll pick a number between");
+        System.out.println("1 and 50, and you try to guess the correct number.");
+        Scanner s = new Scanner(System.in);
+        boolean PlayAgain;
+        do {
+            PlayGame();
+            System.out.println("Would you like to play again? 0/1");
+            String PlayAgainStr = s.next();
+            PlayAgain = PlayAgainStr.equalsIgnoreCase("1");
+        } while (PlayAgain);
+        System.out.println("Thank you for playing .");
+    }
+    static void PlayGame() {
+        int computerNumber;
+        int UserGuess;
+        int Count;
+
+        computerNumber = (int)(50 * Math.random()) + 1;
+        Count = 0;
+
+        System.out.println();
+        System.out.println("Enter your first guess?");
+        Scanner a= new Scanner(System.in);
+        while (true) {
+            UserGuess = a.nextInt();
+            Count++;
+            if (UserGuess == computerNumber) {
+                System.out.println(" You got it in " + Count + " guesses! My number was " + computerNumber);
+                break;
+            }
+
+            if (Count == 4) {
+                System.out.println("You didn't get the number in 4 guesses.");
+                System.out.println(" Extremely sorry You lose. My number was " + computerNumber);
+                break;
+            }
+            if (UserGuess < computerNumber) {
+                System.out.println("Your guess number is too low. Sorry Try again:");
+            }
+            else if (UserGuess > computerNumber) {
+                System.out.println("Your guess number is too high.Sorry Try again:");
+            }
+
+        }
+
+        System.out.println();
+    }
+}
